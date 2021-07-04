@@ -1,0 +1,10 @@
+# Some helpful functions in Python:
+1/. lst.index(some_elem) gives index of the element inside lst
+2/. keys = set(list(dict1.keys()) + list(dict2.keys()))
+3/. string.lower() # case insensitive
+4/. count (+left target) & (-right target) recursively: 
+          return 1 + count_diff(strs[1:], str1, str2)
+          return (-1) + count_diff(strs[1:], str1, str2)
+5/. check values at odd and even indices recursively:
+    ==> can check them simultaneously (i.e. check condition(lst[0]) and condition(lst[1]) at the same time)
+6/. 
