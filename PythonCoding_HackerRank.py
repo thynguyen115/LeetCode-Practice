@@ -1,4 +1,6 @@
-""" Problem 1: Swap Case """
+""" Problem 1: Swap Case 
+    Ex: s = "heLLo" ==> output = "HEllO"
+"""
 def swap_case(s):
     returned_str = ""
     for char in s:
@@ -12,7 +14,9 @@ def swap_case(s):
     return returned_str
 
 """ Problem 2: Using hyphen (-) to connect all words
-    in a given string that is separated by spaces """
+    in a given string that is separated by spaces 
+    Ex: line = "hello I am Thy" --> output = "hello-I-am-Thy"
+"""
 def split_and_join(line):
     returned = ''
     for elem in line:
@@ -28,16 +32,25 @@ def split_and_join(line):
 def print_full_name(first, last):
     strs = 'Hello ' + first + ' ' + last + '! You just delved into python.'
     print(strs)
+
+""" Problem 4: Replace the character at a give position by a new character 
+    Ex: string = "hello", position = 3, character = 'L'
+        output = "helLo"
+"""
+def mutate_string(string, position, character):
+    string = string[:position] + character + string[position+1:]
+    return string
+
   
 if __name__ == '__main__':
-  """ Problem 2: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
+  """ Problem 5: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
     n = int(input())
     integer_list = map(int, input().split())
     t = tuple(integer_list)
     print(hash(t))
   
   """
-   Problem 3: Given an input dictionary {"student_name" : [score1, score2, score3]}
+   Problem 6: Given an input dictionary {"student_name" : [score1, score2, score3]}
    Print average scores of a student (note: give 2 decimal places)) 
   """
   n = int(input())
