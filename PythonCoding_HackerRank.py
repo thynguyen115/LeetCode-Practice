@@ -22,6 +22,12 @@ def split_and_join(line):
             returned += elem
     return returned
 
+""" Problem 3: Print string as this following format:
+               "Hello FirstName LastName! You just delved into python."
+"""
+def print_full_name(first, last):
+    strs = 'Hello ' + first + ' ' + last + '! You just delved into python.'
+    print(strs)
   
 if __name__ == '__main__':
   """ Problem 2: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
