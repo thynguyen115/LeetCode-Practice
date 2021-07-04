@@ -2,6 +2,9 @@
 1/. lst.index(some_elem) gives index of the element inside lst
 2/. keys = set(list(dict1.keys()) + list(dict2.keys()))
 3/. string.lower() # case insensitive
+- Check upper: string.isupper() # return True / False ==> swap: string.lower() # return a string
+- Check lower: string.islower() # return True / False ==> swap: string.upper() # return a string
+- Others: string.isalpha(); string.isdigit()
 4/. count (+left target) & (-right target) recursively: 
           return 1 + count_diff(strs[1:], str1, str2)
           return (-1) + count_diff(strs[1:], str1, str2)
