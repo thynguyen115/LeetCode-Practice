@@ -10,6 +10,18 @@ def swap_case(s):
         else:
             returned_str += char    
     return returned_str
+
+""" Problem 2: Using hyphen (-) to connect all words
+    in a given string that is separated by spaces """
+def split_and_join(line):
+    returned = ''
+    for elem in line:
+        if elem == ' ':
+            returned += '-'
+        else:
+            returned += elem
+    return returned
+
   
 if __name__ == '__main__':
   """ Problem 2: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
