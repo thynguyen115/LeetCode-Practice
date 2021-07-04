@@ -1,5 +1,5 @@
 import java.util.*;
-class Solution {
+class JavaCoding {
   /**
   Problem 1:
     Given an array of integers nums and an integer target, 
