@@ -12,3 +12,5 @@
     ==> can check them simultaneously (i.e. check condition(lst[0]) and condition(lst[1]) at the same time)
 6/. sorted(lst) # gives a sorted list
     sorted(string) # can also sort a string
+7/. isalnum() # check both alpha + num
+    Ex: "abc1" ==> True
