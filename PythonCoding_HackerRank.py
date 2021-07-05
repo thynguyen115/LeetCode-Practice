@@ -149,27 +149,64 @@ HHHHHHHHH
                        HHH    
                         H 
 """
-#Replace all ______ with rjust, ljust or center. 
+# Replace all ______ with rjust, ljust or center. 
 
 thickness = int(input()) #This must be an odd number
 c = 'H'
 
-#Top Cone
+# Top Cone
 for i in range(thickness):
     print((c*i).rjust(thickness-1)+c+(c*i).ljust(thickness-1))
 
-#Top Pillars
+# Top Pillars
 for i in range(thickness+1):
     print((c*thickness).center(thickness*2)+(c*thickness).center(thickness*6))
 
-#Middle Belt
+# Middle Belt
 for i in range((thickness+1)//2):
     print((c*thickness*5).center(thickness*6))    
 
-#Bottom Pillars
+# Bottom Pillars
 for i in range(thickness+1):
     print((c*thickness).center(thickness*2)+(c*thickness).center(thickness*6))    
 
-#Bottom Cone
+# Bottom Cone
 for i in range(thickness):
     print(((c*(thickness-i-1)).rjust(thickness)+c+(c*(thickness-i-1)).ljust(thickness)).rjust(thickness*6))
+    
+""" Problem 11: Print a Door Mat (N x 3N) 
+    Ex: 7 x 21
+    ---------.|.---------
+    ------.|..|..|.------
+    ---.|..|..|..|..|.---
+    -------WELCOME-------
+    ---.|..|..|..|..|.---
+    ------.|..|..|.------
+    ---------.|.---------
+"""
+inp = input()
+row = int(inp.split()[0])
+col = int(inp.split()[1])
+# those 3 lines ^^^ can be replaced by >>> n, m = map(int, input().split()) [credit: ursan]
+
+mid_pattern = ".|."
+mat = []
+# First-half pattern
+for i in range(row//2):    
+    mat.append(mid_pattern.center(col, '-'))
+    mid_pattern = ".|." + mid_pattern + ".|."
+# those lines ^^^ can be replaced by >>> pattern = [('.|.'*(2*i + 1)).center(m, '-') for i in range(n//2)]
+# [credit: ursan]
+
+count = 1
+for i in range(row):
+    # mid row
+    if i == (row - 1) / 2:
+        print("WELCOME".center(col, '-'))
+    elif i < (row-1)/2:
+        print(mat[i]) # first-half
+    else:
+        print(mat[len(mat) - count]) # second-half
+        count += 1
+# ^^^ >>> print('\n'.join(pattern + ['WELCOME'.center(m, '-')] + pattern[::-1])) [credit: ursan]
+        
