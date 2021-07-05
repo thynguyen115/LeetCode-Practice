@@ -77,6 +77,43 @@ def wrap(string, max_width):
     # Remove '\n' at the end of output
     return output[:-1]
 
+""" Problem 7: Given an integer (n), print its values: 
+               (1) decimal, (2) octal, (3) hexa (capitalized), (4) binary
+               Format of output is all about spacing:
+               Ex: n = 17
+                1     1     1     1
+                2     2     2    10
+                3     3     3    11
+                4     4     4   100
+                5     5     5   101
+                6     6     6   110
+                7     7     7   111
+                8    10     8  1000
+                9    11     9  1001
+               10    12     A  1010
+               11    13     B  1011
+               12    14     C  1100
+               13    15     D  1101
+               14    16     E  1110
+               15    17     F  1111
+               16    20    10 10000
+               17    21    11 10001
+"""
+def print_formatted(number):
+    lst = []
+    out_lst = []
+    # find dec, oct, hex, bin of those numbers
+    for i in range(1, number+1):
+        s = str(i) + " " + oct(i)[2:] + " " + hex(i)[2:].upper() + " " + bin(i)[2:]
+        lst.append(s)
+    # spacing
+    max_width = len(lst[-1].split()[-1]) + 1  # len(last elem of last string in lst) + 1
+    for elem in lst:
+        elems = elem.split() # split values of each row
+        str_lst = [" " * (max_width - len(elems[i])) + elems[i] if i > 0 else " " * (max_width - len(elems[i]) - 1) + elems[i] for i in range(0,len(elems))] # reformat the string
+        out_lst += ["".join(str_lst)]
+    return print("\n".join(out_lst))
+
 if __name__ == '__main__':
   """ Problem 7: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
     n = int(input())
