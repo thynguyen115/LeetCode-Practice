@@ -114,6 +114,43 @@ def print_formatted(number):
         out_lst += ["".join(str_lst)]
     return print("\n".join(out_lst))
 
+""" Problem 8: Alphabet Rangoli
+    Ex: size = 5
+    --------e--------
+    ------e-d-e------
+    ----e-d-c-d-e----
+    --e-d-c-b-c-d-e--
+    e-d-c-b-a-b-c-d-e
+    --e-d-c-b-c-d-e--
+    ----e-d-c-d-e----
+    ------e-d-e------
+    --------e--------
+"""
+# import string
+def print_rangoli(size):  
+    alphabet_list = list(string.ascii_lowercase)
+    lst = []
+    count = 1
+    total_letters = size + (size-1) # backward e-d-c-b-a, forward b-c-d-e
+    total_hyphens = total_letters - 1
+    pattern_width = total_letters + total_hyphens
+    for i in range(size):
+        middle_pattern = ""
+        for j in range(count):
+            middle_pattern += alphabet_list[size - j - 1]
+            if j + 1 < count:
+                middle_pattern += '-'
+        count += 1 # e; e-d; e-d-c; e-d-c-b
+        if len(middle_pattern) > 1:
+            middle_pattern += "-" + middle_pattern[:-2][::-1] # add the reverse part 
+            # (ex: add -e to get e-d-e; add d-e to get e-d-c-d-e)
+        
+        middle_pattern = middle_pattern.center(pattern_width, '-')
+        lst += [middle_pattern]
+    print("\n".join(lst))
+    print("\n".join(lst[:-1][::-1]))
+    
+
 if __name__ == '__main__':
   """ Problem 7: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
     n = int(input())
