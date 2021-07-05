@@ -14,3 +14,16 @@
     sorted(string) # can also sort a string
 7/. isalnum() # check both alpha + num
     Ex: "abc1" ==> True
+8/. string.ljust(final_string_width, '-') ==> left aligned string of length final_string_width
+>>> width = 20
+>>> print 'HackerRank'.ljust(width,'-')
+HackerRank----------  
+
+Similarly,
+>>> width = 20
+>>> print 'HackerRank'.center(width,'-')
+-----HackerRank-----
+
+>>> width = 20
+>>> print 'HackerRank'.rjust(width,'-')
+----------HackerRank
