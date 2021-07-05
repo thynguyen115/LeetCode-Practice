@@ -64,7 +64,7 @@ if __name__ == '__main__':
    Problem 7: Given an input dictionary {"student_name" : [score1, score2, score3]}
    Print average scores of a student (note: give 2 decimal places)) 
   """
-  n = int(input())
+    n = int(input())
     student_marks = {}
     for _ in range(n):
         name, *line = input().split()
@@ -75,3 +75,25 @@ if __name__ == '__main__':
     avg = sum(stu_scores) / len(stu_scores)
     print("{:0.2f}".format(avg))
 
+ """ Problem 8: check if 5 conditions satisfy 
+     Condition 1: string has at least an alphanumeric character
+     Condition 2: string has at least an alphabetical character
+     Condition 3: string has any digits
+     Condition 4: string has lowercase character(s)
+     Condition 5: string has uppercase character(s)
+ """
+    s = input()
+    lst = [False, False, False, False, False]
+    for char in s:
+        if char.isalnum():
+            lst[0] = True
+        if char.isalpha():
+            lst[1] = True
+        if char.isdigit():
+            lst[2] = True
+        if char.islower():
+            lst[3] = True
+        if char.isupper():
+            lst[4] = True
+     for i in range(5):
+        print(lst[i])
