@@ -52,16 +52,40 @@ def count_substring(string, sub_string):
         return 1 + count_substring(string[1:], sub_string)
     else:
         return count_substring(string[1:], sub_string)
-    
+ 
+""" Problem 6: Use built-in textwrap to separate a string
+               into smaller string of length max_width 
+    Example: input = "ABCDEFGHIJKLIMNOQRSTUVWXYZ"
+             max_width = 4
+             output = 
+                        "ABCD
+                         EFGH
+                         IJKL
+                         IMNO
+                         QRST
+                         UVWX
+                         YZ"
+"""
+# import textwrap
+def wrap(string, max_width):
+    wrapper = textwrap.TextWrapper(width=max_width)
+    word_list = wrapper.wrap(text=string)
+    output = ""
+    # Connect each line
+    for elem in word_list:
+        output += elem + "\n"
+    # Remove '\n' at the end of output
+    return output[:-1]
+
 if __name__ == '__main__':
-  """ Problem 6: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
+  """ Problem 7: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
     n = int(input())
     integer_list = map(int, input().split())
     t = tuple(integer_list)
     print(hash(t))
   
   """
-   Problem 7: Given an input dictionary {"student_name" : [score1, score2, score3]}
+   Problem 8: Given an input dictionary {"student_name" : [score1, score2, score3]}
    Print average scores of a student (note: give 2 decimal places)) 
   """
     n = int(input())
@@ -75,7 +99,7 @@ if __name__ == '__main__':
     avg = sum(stu_scores) / len(stu_scores)
     print("{:0.2f}".format(avg))
 
- """ Problem 8: check if 5 conditions satisfy 
+ """ Problem 9: check if 5 conditions satisfy 
      Condition 1: string has at least an alphanumeric character
      Condition 2: string has at least an alphabetical character
      Condition 3: string has any digits
@@ -98,7 +122,7 @@ if __name__ == '__main__':
      for i in range(5):
         print(lst[i])
 
-""" Problem 9: print logo of HackerRank 
+""" Problem 10: print logo of HackerRank 
     H    
    HHH   
   HHHHH  
