@@ -150,16 +150,51 @@ def print_rangoli(size):
     print("\n".join(lst))
     print("\n".join(lst[:-1][::-1]))
     
+""" Problem 9: Capitalize the first letter of each word in a given name. 
+               Note "12ab" will stay the same (i.e. "12ab" not "12Ab")
+               Note: the given string only has numbers, spaces, and letters.
+"""
+def solve(s):
+    s = s.title()
+    lst = s.split()
+    alpha_num = []
+    for i in range(len(lst)):
+        if not lst[i].isalpha():
+            alpha_num.append(lst[i])
+    for al_num in alpha_num:
+        s = s.replace(al_num, al_num.lower()) # "12Abc" (title) ==> "12abc"
+    return s
 
+""" Problem 10: Minion Game: Stuart makes substrings starting with consonants;
+                          Kevin makes substrings starting with vowels (AEIOU)
+                          Compare the total occurrences of substring of each player
+                          Print the winner name and their score; If it's a tie result,
+                          print "Draw"
+"""
+def minion_game(string):
+    stuart = 0
+    kevin = 0
+    for i in range(len(string)):
+        if string[i] in "AEIOU":
+            kevin += len(string) - i
+        else:
+            stuart += len(string) - i
+    if kevin < stuart:
+        print("Stuart", stuart)
+    elif stuart < kevin:
+        print("Kevin", kevin)
+    else:
+        print("Draw")
+        
 if __name__ == '__main__':
-  """ Problem 7: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
+  """ Problem 11: Print hash code of a tuple (t) of an input tuple of n integers separated by space """
     n = int(input())
     integer_list = map(int, input().split())
     t = tuple(integer_list)
     print(hash(t))
   
   """
-   Problem 8: Given an input dictionary {"student_name" : [score1, score2, score3]}
+   Problem 12: Given an input dictionary {"student_name" : [score1, score2, score3]}
    Print average scores of a student (note: give 2 decimal places)) 
   """
     n = int(input())
@@ -173,7 +208,7 @@ if __name__ == '__main__':
     avg = sum(stu_scores) / len(stu_scores)
     print("{:0.2f}".format(avg))
 
- """ Problem 9: check if 5 conditions satisfy 
+ """ Problem 13: check if 5 conditions satisfy 
      Condition 1: string has at least an alphanumeric character
      Condition 2: string has at least an alphabetical character
      Condition 3: string has any digits
@@ -196,7 +231,7 @@ if __name__ == '__main__':
      for i in range(5):
         print(lst[i])
 
-""" Problem 10: print logo of HackerRank 
+""" Problem 14: print logo of HackerRank 
     H    
    HHH   
   HHHHH  
@@ -248,7 +283,7 @@ for i in range(thickness+1):
 for i in range(thickness):
     print(((c*(thickness-i-1)).rjust(thickness)+c+(c*(thickness-i-1)).ljust(thickness)).rjust(thickness*6))
     
-""" Problem 11: Print a Door Mat (N x 3N) 
+""" Problem 15: Print a Door Mat (N x 3N) 
     Ex: 7 x 21
     ---------.|.---------
     ------.|..|..|.------
