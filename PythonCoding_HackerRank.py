@@ -1,3 +1,7 @@
+# Thy Nguyen
+# Since: 2021
+# The majority of these problems pertains to string formatting and some maths
+
 """ Problem 1: Swap Case 
     Ex: s = "heLLo" ==> output = "HEllO"
 """
@@ -319,3 +323,33 @@ for i in range(row):
         count += 1
 # ^^^ >>> print('\n'.join(pattern + ['WELCOME'.center(m, '-')] + pattern[::-1])) [credit: ursan]
         
+""" Problem 15: Sorting: lowercase - uppercase - odd - even
+                Ex: input = "Sorting1234" ==> "ginortS1324" """
+inp = input()
+lowercase = ""
+uppercase = ""
+odds = ""
+even = ""
+for i in inp:
+    if i.isalpha():
+        if i.islower():
+            lowercase += i
+        else:
+            uppercase += i
+    else:
+        if int(i) % 2 == 1:
+            odds += i
+        else:
+            even += i
+print("".join(sorted(lowercase) + sorted(uppercase) + sorted(odds) + sorted(even)))
+
+""" Problem 16: Check if all numbers in a given list are positive integers, 
+                and if there is at least 1 palindrome number.
+                Solve in 3 lines if possible
+                Ex: 5
+                    12 9 61 5 14 ==> True 
+"""
+num, lst = input(), list(map(int, input().split()))
+palindrome_ints = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99]
+print(all([elem > 0 for elem in lst]) and any([elem in palindrome_ints for elem in lst]))
+             
