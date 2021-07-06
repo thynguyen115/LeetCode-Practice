@@ -13,7 +13,7 @@
 6/. sorted(lst) # gives a sorted list
     sorted(string) # can also sort a string
 7/. isalnum() # check both alpha + num
-    Ex: "abc1" ==> True
+    Ex: "abc1" ==> True; "ab" ==> True
 8/. Alignment
 string.ljust(final_string_width, '-') ==> left aligned string of length final_string_width
 >>> width = 20
@@ -34,3 +34,19 @@ wrapper = textwrap.TextWrapper(width=width_of_text)
 word_lst = wrapper.wrap(text=input_string)
 for w in word_lst:
     # do something
+Ex:
+input = "ABCDE", width = 3
+==> output: ABC
+            DE
+10/. oct(num)[2:] # octal; hex(num)[2:] # hexa; bin(num)[2:] # binary
+11/. import string
+alphabet_list = list(string.ascii_lowercase) # list of lowercase ascii (['a', 'b', ...])
+OR just do: alphabet="abcdefghijklmnopqrstuvwxyz"
+12/. string = string.replace(old, new) # remember the assignment!!!
+string = string.lower() # remember the assignment!
+13/. all non-duplicate substrings of string:
+all_substr = set([test_str[i:j] for i in range(len(test_str)) for j in range(i+1, len(test_str) + 1)])
+https://www.geeksforgeeks.org/python-get-all-substrings-of-given-string/
+14/. ++score will not remember its incremented value ==> should write "score += 1" for more clarity
+15/. lst = list(map(int, input().split())) # separate input where spaces happen, and map each input element into an int,
+turn everything into a list
