@@ -47,4 +47,39 @@ class JavaCoding {
         }      
         return ids;      
     }
+  
+  /** Problem 1909.
+  Given a 0-indexed integer array nums, return true if it can be made strictly increasing
+  after removing exactly one element, or false otherwise. If the array is already strictly
+  increasing, return true. The array nums is strictly increasing if nums[i - 1] < nums[i] 
+  for each index (1 <= i < nums.length).
+ */
+  public boolean canBeIncreasing(int[] nums) {
+        
+        boolean outOrder1 = false, outOrder2 = false;
+        ArrayList<Integer> arrList = new ArrayList<>();
+        for (int num : nums) {
+            arrList.add(num);
+        }
+        for (int i = 0; i < arrList.size() - 1; i++) {
+            
+            if (arrList.get(i) >= arrList.get(i+1)) {
+                if (!outOrder1) {
+                    outOrder1 = true;
+                    if (i - 1 >= 0 && nums[i+1] <= nums[i-1]) {
+                        arrList.remove(i+1);
+                        i--;
+                    } else if (i + 2 < arrList.size() && arrList.get(i) >= arrList.get(i+2)) {
+                        arrList.remove(i);
+                        i--;
+                    }
+                } else {
+                    outOrder2 = true;
+                    break;
+                }
+            }
+        }
+        return !outOrder2;
+       
+    }
 }
