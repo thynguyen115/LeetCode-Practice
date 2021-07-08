@@ -98,3 +98,12 @@ Counter({2: 4, 3: 4, 1: 3, 4: 2, 5: 1})
 >>>
 >>> print list(permutations('abc',3))
 [('a', 'b', 'c'), ('a', 'c', 'b'), ('b', 'a', 'c'), ('b', 'c', 'a'), ('c', 'a', 'b'), ('c', 'b', 'a')]
+19/. import copy
+obj2 = copy.copy(obj1) # can copy one object into another; obj1 and obj2 have same data, but are diff obj.
+>>> obj1 is obj2 # False
+>>> obj1 == obj2 # False. Both "is" and "==" check object identity not obj equivalence
+Note: if some other object is embedded inside obj1, when doing copy.copy(obj1), that embedded object will
+be the same for obj2; for ex: >>> obj2.corner is obj1.corner # True
+20/. otherwise, do deepcopy
+>>> obj2 = copy.deepcopy(obj1) # now >>> obj2.corner is obj1.corner # False
+21/. hasattr(point, 'attribute_name')
