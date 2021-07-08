@@ -50,3 +50,49 @@ https://www.geeksforgeeks.org/python-get-all-substrings-of-given-string/
 14/. ++score will not remember its incremented value ==> should write "score += 1" for more clarity
 15/. lst = list(map(int, input().split())) # separate input where spaces happen, and map each input element into an int,
 turn everything into a list
+16/. cartesian product:
+from itertools import product
+>>> print list(product([1,2,3],repeat = 2))
+[(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)]
+>>>
+>>> print list(product([1,2,3],[3,4]))
+[(1, 3), (1, 4), (2, 3), (2, 4), (3, 3), (3, 4)]
+>>>
+>>> A = [[1,2,3],[3,4,5]]
+>>> print list(product(*A))
+[(1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 3), (3, 4), (3, 5)]
+>>>
+>>> B = [[1,2,3],[3,4,5],[7,8]]
+>>> print list(product(*B))
+[(1, 3, 7), (1, 3, 8), (1, 4, 7), (1, 4, 8), (1, 5, 7), (1, 5, 8), (2, 3, 7), (2, 3, 8), (2, 4, 7), (2, 4, 8), (2, 5, 7), (2, 5, 8), (3, 3, 7), (3, 3, 8), (3, 4, 7), (3, 4, 8), (3, 5, 7), (3, 5, 8)]
+Ex:
+cartesian_product = list(product(list(map(int, input().split())), 
+list(map(int, input().split()))))
+[print(e, end =" ") for e in cartesian_product] # print without newline
+17/. collections.Counter() acts like a dictionary ==> can also do "dicts["key"] to get value
+>>> from collections import Counter
+>>> 
+>>> myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
+>>> print Counter(myList)
+Counter({2: 4, 3: 4, 1: 3, 4: 2, 5: 1})
+>>>
+>>> print Counter(myList).items()
+[(1, 3), (2, 4), (3, 4), (4, 2), (5, 1)]
+>>> 
+>>> print Counter(myList).keys()
+[1, 2, 3, 4, 5]
+>>> 
+>>> print Counter(myList).values()
+[3, 4, 4, 2, 1]
+18/. >>> from itertools import permutations
+>>> print permutations(['1','2','3'])
+<itertools.permutations object at 0x02A45210>
+>>> 
+>>> print list(permutations(['1','2','3']))
+[('1', '2', '3'), ('1', '3', '2'), ('2', '1', '3'), ('2', '3', '1'), ('3', '1', '2'), ('3', '2', '1')]
+>>> 
+>>> print list(permutations(['1','2','3'],2))
+[('1', '2'), ('1', '3'), ('2', '1'), ('2', '3'), ('3', '1'), ('3', '2')]
+>>>
+>>> print list(permutations('abc',3))
+[('a', 'b', 'c'), ('a', 'c', 'b'), ('b', 'a', 'c'), ('b', 'c', 'a'), ('c', 'a', 'b'), ('c', 'b', 'a')]
