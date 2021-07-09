@@ -107,3 +107,13 @@ be the same for obj2; for ex: >>> obj2.corner is obj1.corner # True
 20/. otherwise, do deepcopy
 >>> obj2 = copy.deepcopy(obj1) # now >>> obj2.corner is obj1.corner # False
 21/. hasattr(point, 'attribute_name')
+22/. print((numpy.zeros(inputs, dtype = numpy.int)))
+inputs = list of dimensions
+ex: inputs = [3,2,1] ==> 3 big elements, inside the big element: 2 smaller elems, inside each smaller elems is 1 smallest.
+[         [[0],[0]],          [[0],[0]],          [[0],[0]] ]
+24/. reverse numpy arr is same as lst
+numpy.array(arr[::-1],float)
+25/. work with sets: https://www.hackerrank.com/challenges/symmetric-difference/problem
+set1.update(set2) # change set1 = set1 + set2
+set1.difference(set2) # {elements} from set1 that are not in set2
+...
