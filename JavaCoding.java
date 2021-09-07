@@ -82,4 +82,67 @@ class JavaCoding {
         return !outOrder2;
        
     }
+  
+  /* Robot Bounded In Circle */
+  public boolean isRobotBounded(String instructions) {
+        // coordinates
+        int x = 0;
+        int y = 0;
+        int tempCoord = 1; // North = 1, West = 2, South = 3, East = 4 
+        int i = 0;
+        while (i < 4) {
+            for (int j = 0; j < instructions.length(); j++) {
+                if (instructions.charAt(j) == 'G') {
+                    if (tempCoord == 1) {
+                        y += 1; // go North
+                    }
+                    else if (tempCoord == 2) {
+                        x -= 1; // go West
+                    }
+                    else if (tempCoord == 3) {
+                        y -= 1; // go South
+                    }
+                    else {
+                        x += 1; // go East
+                    }
+                }
+                else if (instructions.charAt(j) == 'L') {
+                    if (tempCoord == 1) {
+                        tempCoord = 2; // from North to West
+                    }
+                    else if (tempCoord == 2) {
+                        tempCoord = 3; // from West to South
+                    }
+                    else if (tempCoord == 3) {
+                        tempCoord = 4; // from South ot East
+                    }
+                    else {
+                        tempCoord = 1; // from East to North
+                    }
+                 }
+                else { // turn right
+                    if (tempCoord == 1) {
+                        tempCoord = 4; // from North to East
+                    }
+                    else if (tempCoord == 2) {
+                        tempCoord = 1; // from West to North
+                    }
+                    else if (tempCoord == 3) {
+                        tempCoord = 2; // from South to West
+                    }
+                    else {
+                        tempCoord = 3; // from East to South
+                    }
+                }
+            }
+            if (x != 0 || y != 0) {
+                // if either of the x or y is not in the correct position
+                i += 1;
+            } else {
+                i = 4;
+            }
+        }
+        return x == 0 && y == 0;
+    }
+
 }
