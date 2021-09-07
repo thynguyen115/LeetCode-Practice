@@ -144,5 +144,129 @@ class JavaCoding {
         }
         return x == 0 && y == 0;
     }
-
+}
+ 
+/* Illustrate how LRU Cache runs - Medium */
+class LRUCache {
+    private int capacity;
+    private int size;
+    private int leastRank;
+    private int currMaxRank;
+    private Cache[] contents; 
+    private int tempIdx;
+   
+    
+    protected class Cache {
+        int rank;
+        int key;
+        int value;
+        
+        public Cache(int rank, int key, int value) {
+            this.rank = rank;
+            this.key = key;
+            this.value = value;
+        }
+        
+        public int getKey() {
+            return this.key;
+        }
+        
+        public int getVal() {
+            return this.value;
+        }
+        
+        public int getRank() {
+            return this.rank;
+        }
+        
+        public void updateRank(int newRank) {
+            this.rank = newRank;
+        }
+        
+        public void update(int newRank, int newKey, int newVal) {
+            this.rank = newRank; // change rank
+            this.key = newKey; // change key
+            this.value = newVal; // change val
+        }
+    }
+    
+    // Use circular array idea; lecture 26, cse 12
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        this.leastRank = 0;
+        this.currMaxRank = -1;
+        this.tempIdx = 0;
+        this.contents = new Cache[capacity];
+    }
+    
+    public int get(int key) {
+        int i = 0;
+        while (i < this.capacity) {
+            if (this.contents[i] != null) {
+                if (this.contents[i].getKey() == key) {
+                    this.tempIdx = i;
+                    this.contents[i].updateRank(this.currMaxRank + 1);
+                    this.currMaxRank += 1;
+                    return this.contents[i].getVal();
+                }
+            }        
+            i++;
+        }
+        return -1;
+    }
+    
+    private void updateLeastRank(int key, int value) {
+        // Remove least rank, add new (key-value)
+        int i = 0;
+        while (i < this.capacity) { 
+            if (this.contents[i] != null) {
+                if (this.contents[i].getRank() == this.leastRank) {
+                    this.contents[i].update(this.currMaxRank + 1, key, value);
+                    this.currMaxRank += 1; // update current Max rank
+                    break;
+                }
+            }
+            i++;
+        }
+    }
+    
+    public void put(int key, int value) {
+        if (this.find(key) != -1) { // key exists
+            this.contents[this.tempIdx].update(this.currMaxRank + 1, key, value); // update value
+            this.currMaxRank += 1;
+        } else { // key DNE
+            if (this.size == this.capacity) {
+                this.updateLeastRank(key, value);
+            } else {
+                // add new
+                this.contents[this.size] = new Cache(this.currMaxRank+1, key, value);
+                this.size += 1; // update size          
+                this.currMaxRank += 1; // update curr max rank
+            }
+        }
+    } 
+    
+    
+    private int find(int key) {
+        int i = 0;
+        int returnVal = -1;
+        this.leastRank = this.currMaxRank;
+        while (i < this.capacity) {
+            if (contents[i] != null) {
+                if (this.contents[i].getKey() == key) {
+                    this.tempIdx = i;
+                    returnVal = this.contents[i].getVal();
+                }
+                
+                if (this.contents[i].getRank() < this.leastRank) {
+                    this.leastRank  = this.contents[i].getRank();
+                }
+            }    
+            i++;
+        }
+        //this.leastRank = tempMin;
+        return returnVal;
+    }
+  }
 }
