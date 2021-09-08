@@ -270,3 +270,52 @@ class LRUCache {
     }
   }
 }
+
+/* Reverse Linked list */
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        // 0 node, 1 node
+        if(head == null || head.next == null) {
+            return head;
+        } 
+        // 2 nodes
+        if (head.next.next == null) {
+            ListNode pre = head;
+            ListNode curr = head.next;
+            head = curr;
+            curr.next = pre;
+            pre.next = null;
+            return head;
+        }
+        
+        // more than 2 nodes
+        ListNode pre = head, curr = head.next, after = head.next.next, temp = null;
+        pre.next = null;
+        while (after != null) {
+            // update curr links
+            curr.next = pre;
+            temp = after.next;
+            after.next = curr;
+            
+            if (temp == null) {
+                head = after;
+            }
+            
+            // update for next iteration
+            pre = curr;
+            curr = after;
+            after = temp;
+        }
+        return head;
+    }
+}
