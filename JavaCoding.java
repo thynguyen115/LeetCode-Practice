@@ -83,6 +83,29 @@ class JavaCoding {
        
     }
   
+  /* Number of Ballon */
+  public int maxNumberOfBalloons(String text) {
+        char[] chars = text.toCharArray();
+        int numB = 0, numA = 0, numL = 0, numO = 0, numN = 0;
+        for (char ch : chars) {
+            if (ch == 'b') {
+                numB += 1;
+            } else if (ch == 'a') {
+                numA += 1;
+            } else if (ch == 'l') {
+                numL += 1;
+            } else if (ch == 'o') {
+                numO += 1;
+            } else if (ch == 'n') {
+                numN += 1;
+            }
+        }
+        numL /= 2;
+        numO /= 2;
+        Integer[] num = {numB, numA, numL, numO, numN };
+        return Collections.min(Arrays.asList(num));
+    }
+  
   /* Robot Bounded In Circle */
   public boolean isRobotBounded(String instructions) {
         // coordinates
