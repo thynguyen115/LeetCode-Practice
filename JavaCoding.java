@@ -294,6 +294,53 @@ class LRUCache {
   }
 }
 
+/* Longest turbulent subarray */
+class Solution {
+public int maxTurbulenceSize(int[] arr) {
+        if (arr.length == 1) {
+            return 1;
+        }
+        int max = 1, currMax = 1, idx;
+        boolean turbulent;
+        boolean bigger, smaller;
+        // O(N^2) worst case if the while loop go through the rest of the list
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] == arr[i+1]) {
+                continue;
+            } else if (arr[i] > arr[i+1]) {
+                bigger = true;
+                smaller = false;
+                currMax += 1;
+            } else {
+                bigger = false;
+                smaller = true;
+                currMax += 1;
+            }
+            idx = i + 1;
+            turbulent = bigger || smaller;
+            while (turbulent && idx < arr.length - 1) {
+                if (bigger && arr[idx] < arr[idx+1]) {
+                    currMax += 1;
+                    smaller = true;
+                    bigger = false;
+                } else if (smaller && arr[idx] > arr[idx+1]) {
+                    currMax += 1;
+                    smaller = false;
+                    bigger = true;
+                } else {
+                    smaller = false;
+                    bigger = false;
+                }
+                turbulent = smaller || bigger;
+                idx += 1;
+                //System.out.println(bigger);
+            }
+            max = Math.max(currMax, max);
+            currMax = 1;
+        }
+        return max;
+    }
+}
 /* Reverse Linked list */
 /**
  * Definition for singly-linked list.
