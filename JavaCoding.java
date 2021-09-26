@@ -295,7 +295,7 @@ class LRUCache {
 }
 
 /* Longest turbulent subarray */
-class Solution {
+class Solution1 {
 public int maxTurbulenceSize(int[] arr) {
         if (arr.length == 1) {
             return 1;
@@ -352,7 +352,7 @@ public int maxTurbulenceSize(int[] arr) {
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution2 {
     public ListNode reverseList(ListNode head) {
         // 0 node, 1 node
         if(head == null || head.next == null) {
@@ -391,7 +391,7 @@ class Solution {
 }
 
 /* 1011: Capacity to ship packages within D days */
-class Solution {
+class Solution3 {
     public int shipWithinDays(int[] weights, int days) {
         int totalW = 0;
         for (int w : weights) {
@@ -418,5 +418,27 @@ class Solution {
             currW = 0; // reset the weights
         }
         return i == weights.length; // if reach the end of the combination ==> return true
+    }
+}
+
+/* Break a Palindrome */
+class Solution4 {
+    public String breakPalindrome(String palindrome) {
+        if (palindrome.length() == 1) {
+            return "";
+        }
+        char[] chars = palindrome.toCharArray();
+        boolean all_a = true;
+        for (int i = 0; i < palindrome.length(); i++) {
+            if (palindrome.charAt(i) != 'a' && i != palindrome.length() / 2) { // didvide by 2 due to "aba"
+                chars[i] = 'a';
+                all_a = false;
+                break;
+            }
+        }
+        if (all_a) {
+            chars[chars.length - 1] = 'b';
+        }
+        return String.valueOf(chars);
     }
 }
