@@ -389,3 +389,34 @@ class Solution {
         return head;
     }
 }
+
+/* 1011: Capacity to ship packages within D days */
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        int totalW = 0;
+        for (int w : weights) {
+            totalW += w;
+        }
+        int avgCap = totalW / days; // curr min capacity
+        int cap = avgCap;
+        while(!feasible(cap, days, weights)) {
+            cap += 1;
+        }
+        return cap;
+    }
+    
+    private boolean feasible(int cap, int days, int[] weights) {
+        int i = 0;
+        int currW = 0;
+        while (i < weights.length && days > 0) {
+            // find possible combination of consecutive weights that do not go over the curr min capacity
+            while (i < weights.length && currW + weights[i] <= cap) {
+                currW += weights[i];
+                i += 1;
+            }
+            days -= 1; // after each loading, go to the next day
+            currW = 0; // reset the weights
+        }
+        return i == weights.length; // if reach the end of the combination ==> return true
+    }
+}
