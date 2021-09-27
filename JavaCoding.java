@@ -442,3 +442,27 @@ class Solution4 {
         return String.valueOf(chars);
     }
 }
+
+/* LC 929: Unique emails */
+class Solution5 {
+  public int numUniqueEmails(String[] emails) {
+    Set<String> unique = new HashSet<>();
+        for (String email : emails) {
+            StringBuilder s = new StringBuilder();
+            String local = email.split("@")[0], domain = email.split("@")[1]; 
+            for (int i = 0; i < local.length(); i++) {
+                if (local.charAt(i) == '+') {
+                    break;
+                } else if (local.charAt(i) != '.') {
+                    s.append(local.charAt(i));
+                }
+            }
+            local = s.toString();
+            email = local + "@" + domain;
+            if (!unique.contains(email)) {
+                unique.add(email);
+            }
+        }
+        return unique.size();
+  }
+}
