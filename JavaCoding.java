@@ -444,7 +444,7 @@ class Solution4 {
 }
 
 /* LC 929: Unique emails */
-class Solution5 {
+class Solution929 {
   public int numUniqueEmails(String[] emails) {
     Set<String> unique = new HashSet<>();
         for (String email : emails) {
@@ -465,4 +465,58 @@ class Solution5 {
         }
         return unique.size();
   }
+}
+
+/* LC 1482: Min days to make m bouquets */
+class Solution1482 {
+    public int minDays(int[] bloomDay, int m, int k) {
+        // total number of flowers needed exceed the available flowers
+        if (m*k > bloomDay.length) {
+            return -1;
+        }
+        int minDay = bloomDay[0], maxDay = bloomDay[0];
+        
+        for (int day : bloomDay) {
+            minDay = Math.min(minDay, day);
+            maxDay = Math.max(maxDay, day);
+        }
+        
+        int left = minDay, right = maxDay;
+        // O(log(max(bloomDay)) * len(bloomDay))
+        while (left < right) {
+            int mid = left + (right - left) /2;
+            if (possible(mid, bloomDay, m, k)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left; // and when to return -1??
+    }
+    
+    // find the minimum number of days we need to wait
+    private boolean possible(int mid, int[] bloomDay, int numBouquets, int adj) {
+        int i = 0;
+        int countAdj = 0;
+        while (i < bloomDay.length) {
+            if (bloomDay[i] > mid) {
+                countAdj = 0;
+                i += 1;
+                continue;
+            }
+            while (i < bloomDay.length && bloomDay[i] <= mid && countAdj < adj) {
+                countAdj += 1;
+                i += 1;
+            }
+            if (countAdj == adj) {
+                numBouquets -= 1;
+                countAdj = 0;
+            } 
+            if (numBouquets == 0) {
+                break;
+            }
+            
+        }
+        return numBouquets == 0;
+    }
 }
