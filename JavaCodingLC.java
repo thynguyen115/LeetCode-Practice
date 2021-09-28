@@ -19,3 +19,36 @@ class Solution922 {
         return nums;
     }
 }
+
+/* LC74: Search 2D MT */
+class Solution74 {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        // check each row, if the target is less than the first elem in the row
+        // or bigger than the last elem of that row ==> stop that row
+        // otherwise, do binary search
+        int i = 0, row = matrix.length, col = matrix[0].length;
+        while (i < row) {
+            // start <= target <= end
+            if (matrix[i][0] <= target && target <= matrix[i][col-1]) {
+                // binary search
+                int left = 0, right = col - 1;
+                while (left < right) {
+                    int mid = left + (right - left) / 2;
+                    if (matrix[i][mid] == target) {
+                        return true;
+                    } else if (matrix[i][mid] > target) {
+                        right = mid;
+                    } else {
+                        left = mid + 1;
+                    }
+                }
+                
+                if (matrix[i][left] == target) {
+                    return true;
+                }
+            }
+            i += 1;
+        }
+        return false;
+    }
+}
