@@ -520,3 +520,54 @@ class Solution1482 {
         return numBouquets == 0;
     }
 }
+
+/* LC34: Find first, last positions of target in an array */
+class Solution34 {
+    public int[] searchRange(int[] nums, int target) {
+        int[] range = {-1, -1};
+        if (nums.length == 0) {
+            return range;
+        }
+        int left = 0, right = nums.length - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            // find the smallest index where nums[mid] == target
+            // or slightly greater ...
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        // target does not appear in range
+        if (nums[left] != target) {
+            return range;
+        } else {
+            range[0] = left;
+        }
+        
+        // note: left = left if there is only 1 target inside nums[]
+        right = nums.length - 1;
+        //int originalLeft = left;
+        while (left < right) {
+            int mid2 = left + (right - left) / 2;
+            // a = find the biggest index (the last index) where nums[mid] == target
+            // b = meaning find the smallest index (the first index) where nums[mid] > target
+            // a = b - 1 (b/c b is consecutive number right next to a)
+            // however, in case only one number in the range, a = b
+            if (nums[mid2] > target) {
+                right = mid2;
+            } else {
+                left = mid2 + 1;
+            }
+        }
+        
+        if (nums[left] == target) {
+            range[1] = left;
+        } else {
+            range[1] = left - 1;
+        }
+            
+        return range;       
+    }    
+}
