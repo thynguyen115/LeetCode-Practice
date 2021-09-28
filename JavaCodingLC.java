@@ -52,3 +52,14 @@ class Solution74 {
         return false;
     }
 }
+
+/* LC217: Check if array contains duplicates or not */
+class Solution217 {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        return set.size() < nums.length;
+    }
+}
